@@ -1,0 +1,14 @@
+!!! 5
+%html
+  %head
+    %title PFCS Mobile
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    %div.ui-page-active{data: {theme: "b", role: "page"}}
+      - if content_for?(:header)
+        %div{data: {role: "header", theme: "b"}}
+          = yield(:header)
+      %div{data: {role: "content", theme: "b"}}
+        = yield
