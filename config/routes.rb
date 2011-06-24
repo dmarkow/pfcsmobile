@@ -1,4 +1,6 @@
 Pfcsmobile::Application.routes.draw do
+  resources :projects
+
   resources :contacts do
     collection do
       get "search"
