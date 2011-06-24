@@ -1,10 +1,9 @@
 - content_for :header do
   %h1 Contacts
 
-%div{data: {role: "fieldcontain"}}
-  / = form_tag "/contacts/search" do
-  %label{for: "search"} Find a Contact:
-  %input{type: "search", name: "search", id: "search"}
+%div{data: {role: "fieldcontain"}, style: "margin-left: 15px; padding-top: 0;"}
+  = form_tag "/contacts/search", :method => :get do
+    %input{type: "search", name: "search", id: "search"}
     
 %ul{data: {role: "listview"}}
   - @contacts.each do |contact|

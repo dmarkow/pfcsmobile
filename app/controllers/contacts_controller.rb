@@ -8,6 +8,12 @@ class ContactsController < ApplicationController
     
   end
   
+  def search
+    @contacts = Contact.where("display_as ilike ?", "%#{params[:search]}%")
+    logger.info "COUNT: #{@contacts.count}"
+    render "index"
+  end
+  
   private
   
   def find_contact

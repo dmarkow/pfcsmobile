@@ -1,5 +1,9 @@
 Pfcsmobile::Application.routes.draw do
-  resources :contacts
+  resources :contacts do
+    collection do
+      get "search"
+    end
+  end
 
   get "home/index"
 
