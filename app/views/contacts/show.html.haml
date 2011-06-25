@@ -1,3 +1,32 @@
 - content_for :header do
   %h1= @contact.display_as
-  
+
+%ul{data: {role: "listview", inset: "true"}}
+  - [["work_phone", "Work"], ["work_phone_2", "Direct"], ["mobile", "Mobile"]].each do |field, description|
+    - unless @contact.attributes[field].blank?
+      %li
+        %a{:href => "tel:#{@contact.attributes[field].gsub(/[^\d]/, "")}"}
+          %p.ui-li-aside= description
+          = @contact.attributes[field]
+
+- unless @contact.email.blank?
+  %ul{data: {role: "listview", inset: "true"}}
+    %li
+      %a{:href => "mailto:#{@contact.email}"}
+        %p.ui-li-aside E-mail
+        = @contact.email
+        
+%ul{data: {role: "listview", inset: "true"}}
+  - if @actionitems.blank?
+    %li
+      %div Notes
+      %p.ui-li-count 0
+  - else
+    %li
+      %div Notes
+      %p.ui-li-count= @actionitems.length
+      %ul{data: {dividertheme: "a"}}
+        - @actionitems.each do |note|
+          %li{data: {role: "list-divider"}}
+            #{note.user.login} #{note.contact_type} on #{note.item_date}
+          %li= simple_format(note.description)

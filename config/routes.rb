@@ -1,4 +1,8 @@
 Pfcsmobile::Application.routes.draw do
+  resources :users
+
+  resources :actionitems
+
   resources :projects
 
   resources :contacts do

@@ -5,7 +5,7 @@ class ContactsController < ApplicationController
   end
   
   def show
-    
+    @actionitems = @contact.actionitems.order("item_date desc, id desc")
   end
   
   def search

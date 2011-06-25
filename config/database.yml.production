@@ -1,0 +1,18 @@
+login: &login
+  adapter: postgresql
+  username: postgres
+  password: 7Rkv8Roc
+  host: localhost
+  schema_search_path: public
+
+development:
+  database: pfcs_development
+  <<: *login
+
+production:
+  database: pfcs
+  <<: *login
+
+access:
+  database: access
+  <<: *login
